@@ -1,0 +1,33 @@
+﻿body {
+}
+.container {
+    width: 70%;
+}
+header {
+    background-color: #191970;
+    text-align: center;
+    height: 85px;
+}
+h3 {
+    color: white;
+    font-weight: bold;
+    padding-top: 25px;
+}
+footer {
+    background-color: #B0E0E6;
+    height: 90px;
+}
+.col-left {
+    text-align: right;
+    color: #1E90FF;
+    padding-top: 10px;
+}
+.col-right {
+    color: #191970;
+    padding-top: 35px;
+}
+ 
+.section-right {
+    width: 100%;
+    
+}

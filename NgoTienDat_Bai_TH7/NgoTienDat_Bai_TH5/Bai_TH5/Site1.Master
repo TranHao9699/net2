@@ -1,0 +1,105 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="Bai_TH5.Site1" %>
+
+<html>
+<!DOCTYPE html>
+<head runat="server">
+    <title>HỆ THỐNG QUẢN LÝ THÔNG TIN</title>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        html, body, h1, h2, h3, h4, h5 {
+            font-family: "Raleway", sans-serif
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="w3-light-grey">
+    <!-- Top container -->
+    <div class="w3-bar w3-top w3-black w3-large" style="z-index: 4">
+        <span class="w3-bar-item w3-right">HỆ THỐNG QUẢN LÝ THÔNG TIN</span>
+    </div>
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index: 3; width: 300px;" id="mySidebar">
+        <br>
+        <div class="w3-container w3-row">
+            <div class="w3-col s4">
+                <img src="img/anh-dai-dien-FB-200-1.jpg" class="w3-circle w3-margin-right" style="width: 46px" />
+            </div>
+            <div class="w3-col s8 w3-bar">
+                <span>Welcome, <strong>Admin</strong></span><br>
+                <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+                <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
+                <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+            </div>
+        </div>
+        <hr>
+        <div class="w3-bar-block w3-green" style="height: 48px; text-align: center">
+            <a>-*- DANH MỤC CHỨC NĂNG -*-</a>
+        </div>
+        <div class="w3-bar-block">
+            <a href="#" class="w3-bar-item w3-padding-16 w3-hide-large w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>Close Menu</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>Trang Chủ</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa">&#xf19d;</i>Hồ sơ sinh viên</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>Hồ sơ giảng viên</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding"><i class="	fa fa-pie-chart"></i>Hồ sơ đồ án</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-lock"></i>Quản lý tài khoản</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding"><i class="	fa fa-plus-circle"></i>Quản lý Danh mục</a>
+            <br>
+        </div>
+    </nav>
+        <script>
+            // Get the Sidebar
+            var mySidebar = document.getElementById("mySidebar");
+
+            // Get the DIV with overlay effect
+            var overlayBg = document.getElementById("myOverlay");
+
+            // Toggle between showing and hiding the sidebar, and add overlay effect
+            function w3_open() {
+                if (mySidebar.style.display === 'block') {
+                    mySidebar.style.display = 'none';
+                    overlayBg.style.display = "none";
+                } else {
+                    mySidebar.style.display = 'block';
+                    overlayBg.style.display = "block";
+                }
+            }
+
+            // Close the sidebar with the close button
+            function w3_close() {
+                mySidebar.style.display = "none";
+                overlayBg.style.display = "none";
+            }
+    </script>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+    <footer>
+        <div class="text-center mt-5" style="background-color: #a0bbaf">
+            BẢN QUYỀN THUỘC VỀ KHOA CÔNG NGHỆ THÔNG TIN - ĐẠI HỌC MỎ ĐỊA CHẤT
+                    <br />
+            Địa chỉ: Tầng 7 nhà C12 số 10 Phố Viên - Phường Đức Thắng - Bắc Từ Liêm - Hà Nội
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,110 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="View.master.cs" Inherits="Vidu_B5_Session.View" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        html, body, h1, h2, h3, h4, h5 {
+            font-family: "Raleway", sans-serif
+        }
+
+        .footer {
+            background-color: #85e0cf;
+        }
+    </style>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+        .header {
+            height: 42px;
+        }
+
+        html, body, h1, h2, h3, h4, h5 {
+            font-family: "Raleway", sans-serif
+        }
+    </style>
+</head>
+<body class="w3-light-grey">
+    <form id="form1" runat="server">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="header">
+                    <div class="w3-bar w3-top w3-black w3-large" style="z-index: 4;">
+                        <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>Menu</button>
+                        <span class="w3-bar-item w3-right">HỆ THỐNG QUẢN LÝ THÔNG TIN</span>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="row">
+                        <div class="col-sm-3" style="padding-right: 0px; max-width: 24%;">
+                            <nav class=" w3-collapse w3-white w3-animate-left" style="z-index: 3; width: 300px; height: 100%; overflow: visible;" id="mySidebar">
+                                <br>
+                                <div class="w3-container w3-row">
+                                    <div class="w3-col s4">
+                                        <img src="images/avatar.jpg" class="w3-circle w3-margin-right" style="width: 46px">
+                                    </div>
+                                    <div class="w3-col s8 w3-bar">
+                                        <span>Chào mừng, <strong>admin</strong></span><br>
+                                        <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
+                                        <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
+                                        <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+                                        <asp:Button ID="btnLogout" runat="server" Text="Thoát" OnClick="btnLogout_Click" />
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="w3-container w3-green" style="padding-top: 7px;">
+                                    <h5 style="font-weight: bold; font-size: 16px;">-*-DANH MỤC CHỨC NĂNG-*-</h5>
+                                </div>
+                                <div class="w3-bar-block">
+                                    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>Close Menu</a>
+                                    <a href="home.aspx" class="w3-bar-item w3-button w3-padding w3-blue"><i class="	fa fa-home"></i>Trang Chủ</a>
+                                    <a href="HoSoSinhVien.aspx" class="w3-bar-item w3-button w3-padding"><i class="	fa fa-mortar-board"></i>Hồ sơ sinh viên</a>
+                                    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>Hồ sơ giảng viên</a>
+                                    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="	fa fa-pie-chart"></i>Hồ sơ đồ án</a>
+                                    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="	fa fa-lock"></i>Quản lý tài khoản</a>
+                                    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="	fa fa-plus-circle"></i>Quản lý danh mục</a>
+
+                                    <br>
+                                </div>
+                            </nav>
+                        </div>
+                        <div class="col-sm-9" style="padding-left: 0px; padding-right: 1px;">
+                            <div>
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div style="padding-left: 10px; font-size: 18px; font-family: Arial;">
+                        BẢN QUYỂN THUỘC VỀ KHOA CÔNG NGHỆ THÔNG TIN - ĐẠI HỌC MỎ ĐỊA CHẤT
+                    <br />
+                        Địa chỉ: Tầng 7 nhà C12 số 18 phố Viên - Phường Đức Thắng - Bắc Từ Liêm - Hà Nội
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </form>
+</body>
+</html>

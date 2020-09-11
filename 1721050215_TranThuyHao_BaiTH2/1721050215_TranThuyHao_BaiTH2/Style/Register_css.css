@@ -1,0 +1,16 @@
+﻿body {
+}
+h4 {
+    color: #181818;
+    text-align: center;
+
+}
+.abc {
+    width: 55%;
+    background-image: url('../Images/nền.jpg');
+    height: 491px;
+}
+.btn {
+    text-align: center;
+    width: 655px;
+}

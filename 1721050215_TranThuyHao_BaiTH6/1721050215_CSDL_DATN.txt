@@ -1,0 +1,406 @@
+/*
+Bài th?c hành s? 6
+Môn h?c: L?p trình NET 2
+Tên co s? d? li?u: DB_DATN
+Sinh viên: Tr?n Thúy H?o 
+MSV: 1721050215
+Lu?c d?:
+		tbl_khoahoc(Makh*, Tenkhoa, Thoigian, ghichu)
+		tbl_chuyennganh(Makh*, TenKhoa, ghichu)
+		tbl_sinhvien(Masv*, Tensv, Namsinh, Gioitinh, Khoa, Chuyennganh, Email, Dienthoai, Diachi)
+		tbl_giangvien(Magv*, Tengv, Namsinh, Gioitinh, Hocvi, Email, Dienthoai, Diachi)
+		tbl_linhvuc(Makh*, Tenkhoa, ghi chu)
+		tbl_doan(Masv*, TenDA, GVHD, GVPB, linhvuc, Diem, Namtn)
+*/
+
+Create Database DB_DATN
+Use DB_DATN
+
+	/* B?ng tbl_khoahoc */
+Create table tbl_khoahoc
+(Makh Tinyint,
+Tenkhoa Nvarchar(10),
+Thoigian Nvarchar(50),
+Ghichu Nvarchar(50)
+Primary Key(Makh))
+
+	/* B?ng tbl_chuyennganh */
+Create table tbl_chuyennganh
+(Macn Tinyint,
+Tencn Nvarchar(50),
+Ghichu Nvarchar(50)
+Primary Key(Macn))
+
+	/* B?ng tbl_sinhvien */
+Create table tbl_sinhvien
+(Masv Char(10),
+Tensv Nvarchar(50),
+Namsinh Date,
+Gioitinh Bit,
+Khoa Tinyint,
+Chuyennganh Tinyint,
+Email Varchar(50),
+Dienthoai Varchar(50),
+Diachi Nvarchar(200),
+Ghichu Nvarchar(150),
+Primary Key(Masv),
+Foreign Key(Khoa)
+References tbl_khoahoc ,
+Foreign Key(Chuyennganh)
+References tbl_chuyennganh)
+
+	/* B?ng tbl_giangvien */
+Create table tbl_giangvien
+(Magv Char(6),
+Tengv Nvarchar(50),
+Namsinh Date,
+Gioitinh Bit,
+Hocvi Nvarchar(20),
+Email Varchar(50),
+Dienthoai Varchar(50),
+Diachi Nvarchar(200),
+Primary Key(Magv))
+
+	/* B?ng tbl_linhvuc */
+Create table tbl_linhvuc
+(Malv Tinyint,
+Tenlv Nvarchar(150),
+Ghichu Nvarchar(150),
+Primary Key(Malv))
+
+	/* B?ng tbl_doan */
+Create table tbl_doan
+(Masv Char(10),
+TenDA Nvarchar(400),
+GVHD Char(6),
+GVPB Char(6),
+linhvuc Tinyint,
+Diem Decimal(3,1),
+Namtn Smallint,
+Primary Key(Masv),
+Foreign Key(GVHD)
+References tbl_giangvien,
+Foreign Key(GVPB)
+References tbl_giangvien,
+Foreign Key(linhvuc)
+References tbl_linhvuc)
+
+/* Thêm d? li?u vào B?ng tbl_khoahoc */
+insert into tbl_khoahoc values(47, N'Khóa 47 ', N'2002-2007 ', N'Ðào t?o niên ch?'); 
+insert into tbl_khoahoc values(48, N'Khóa 48 ', N'2003-2008 ', N'Ðào t?o niên ch?'); 
+insert into tbl_khoahoc values(49, N'Khóa 49 ', N'2004-2009 ', N'Ðào t?o niên ch?'); 
+insert into tbl_khoahoc values(50, N'Khóa 50 ', N'2005-2010 ', N'Ðào t?o niên ch?'); 
+insert into tbl_khoahoc values(51, N'Khóa 51 ', N'2006-2011 ', N'Ðào t?o niên ch?'); 
+insert into tbl_khoahoc values(52, N'Khóa 52 ', N'2007-2012 ', N'Ðào t?o niên ch?'); 
+insert into tbl_khoahoc values(53, N'Khóa 53 ', N'2008-2013 ', N'Ðào t?o niên ch?'); 
+insert into tbl_khoahoc values(54, N'Khóa 54 ', N'2009-2014 ', N'Ðào t?o tín ch?'); 
+insert into tbl_khoahoc values(55, N'Khóa 55 ', N'2010-2015 ', N'Ðào t?o tín ch?'); 
+insert into tbl_khoahoc values(56, N'Khóa 56 ', N'2011-2016 ', N'Ðào t?o tín ch?'); 
+insert into tbl_khoahoc values(57, N'Khóa 57 ', N'2012-2017 ', N'Ðào t?o tín ch?'); 
+insert into tbl_khoahoc values(58, N'Khóa 58 ', N'2013-2018 ', N'Ðào t?o tín ch?'); 
+
+/* Thêm d? li?u vào B?ng tbl_chuyennganh */
+insert into tbl_chuyennganh values(1, N'Tin h?c M?', N''); 
+insert into tbl_chuyennganh values(2, N'Tin h?c Tr?c d?a', N''); 
+insert into tbl_chuyennganh values(3, N'Tin h?c Kinh t?', N''); 
+insert into tbl_chuyennganh values(4, N'Tin h?c Ð?a ch?t', N''); 
+insert into tbl_chuyennganh values(5, N'M?ng máy tính', N''); 
+insert into tbl_chuyennganh values(6, N'Công ngh? ph?n m?m', N''); 
+insert into tbl_chuyennganh values(7, N'Khoa h?c máy tính ?ng d?ng ', N'Tuy?n sinh t? K60'); 
+
+
+/* Thêm d? li?u vào B?ng tbl_sinhvien */
+insert into tbl_sinhvien values(1221000100, N'Ð? Th? Thu Hi?n ', N'1985-07-16', N'1', N'48', N'6', N'dothuhien@yahoo.com ', N'972836521', N'Yên Bái',N''); 
+insert into tbl_sinhvien values(1221000109, N'T? Duy Hi?n ', N'1987-04-18', N'0', N'50', N'4', N'Hien1987@gmail.com ', N'1658797651', N'Thái Bình',N''); 
+insert into tbl_sinhvien values(1221000110, N'Cao Ðình Khôi ', N'1984-09-11', N'1', N'47', N'1', N'buithu@gmail.com ', N'977123123', N'Nam Ð?nh',N''); 
+insert into tbl_sinhvien values(1221000122, N'Nguy?n Th? Huy?n ', N'1988-03-25', N'1', N'51', N'6', N'thanhhuyen@yahoo.com ', N'912098077', N'Thái Bình',N''); 
+insert into tbl_sinhvien values(1221000107, N'T? Ðình Thi ', N'1987-09-21', N'0', N'50', N'1', N'Dinhthi@yahoo.com ', N'1222345678', N'Ninh Bình',N''); 
+insert into tbl_sinhvien values(1221000420, N'Nguy?n Ð?c Minh ', N'1986-11-17', N'0', N'49', N'6', N'nguyenminh@gmail.com ', N'983786234', N'H?i Duong',N''); 
+insert into tbl_sinhvien values(1221000311, N'Ð? Van Hi?u ', N'1984-12-10', N'0', N'47', N'1', N'hieudv@gmail.com ', N'987665667', N'H?i Phòng',N''); 
+insert into tbl_sinhvien values(1221000227, N'Van Tu?ng Thu?t ', N'1985-01-09', N'0', N'48', N'2', N'vanthuat@gmail.com ', N'1667781221', N'Qu?ng Ninh',N''); 
+insert into tbl_sinhvien values(1221000111, N'Nguy?n Trung Ti?n ', N'1988-07-13', N'0', N'51', N'1', N'trungtien@gmail.com ', N'977543212', N'Hung Yên',N''); 
+insert into tbl_sinhvien values(1221000113, N'Quách Trung Thành ', N'1984-08-12', N'0', N'47', N'1', N'Trungthanh84@gmail.com ', N'1227786763', N'B?c Ninh',N''); 
+insert into tbl_sinhvien values(1221000410, N'Ð? Ti?n Thành ', N'1987-01-15', N'0', N'50', N'1', N'Tienthanh.qn@gmail.com ', N'987665789', N'Qu?ng Ninh',N''); 
+insert into tbl_sinhvien values(1221000166, N'Nguy?n Van L?i ', N'1986-12-12', N'0', N'50', N'1', N'nguyenvanloi@yahoo.com ', N'977115654', N'Vinh Phúc',N''); 
+insert into tbl_sinhvien values(1221000168, N'Nguy?n Th? Hoài ', N'1988-03-19', N'1', N'51', N'1', N'Nguyenhoai88@gmail.com ', N'978654755', N'Lào Cai',N''); 
+insert into tbl_sinhvien values(1221000157, N'Nguy?n Vu Thành ', N'1984-04-05', N'0', N'47', N'3', N'Vuthanh84@gmail.com ', N'1658765664', N'L?ng Son',N''); 
+insert into tbl_sinhvien values(1221000143, N'Ph?m Trung Kiên ', N'1983-09-28', N'0', N'48', N'6', N'Trungkien@yahoo.com ', N'987767234', N'Qu?ng Ninh',N''); 
+insert into tbl_sinhvien values(1221000185, N'Tr?n Van Qu?ng ', N'1989-08-11', N'0', N'52', N'4', N'Quangtran89@yahoo.com ', N'1652347861', N'Hòa Bình',N''); 
+insert into tbl_sinhvien values(1221000119, N'Bùi Van Kiên ', N'1990-10-19', N'0', N'53', N'2', N'Kien19101990@gmail.com ', N'981887770', N'Lào Cai',N''); 
+insert into tbl_sinhvien values(1221000532, N'Nguy?n Bá Long ', N'1988-03-11', N'0', N'51', N'3', N'balong@gmail.com ', N'1667889876', N'Thái Bình',N''); 
+insert into tbl_sinhvien values(1221000169, N'Ngô Van Long ', N'1986-01-30', N'0', N'48', N'6', N'Longngo86@gmail.com ', N'977135167', N'Hà N?i',N''); 
+insert into tbl_sinhvien values(1221000125, N'Nguy?n Th? L? Qu?nh ', N'1986-11-18', N'1', N'49', N'1', N'Lequynh86@yahoo.com ', N'126987125', N'H?i Phòng',N''); 
+insert into tbl_sinhvien values(1221000190, N'Nguy?n Van Th? ', N'1985-10-22', N'0', N'48', N'3', N'nguyenthe@gmail.com ', N'977123776', N'Lai Châu',N''); 
+insert into tbl_sinhvien values(1221000118, N'Lê Van Ð?nh ', N'1987-11-12', N'0', N'50', N'2', N'Ledinh87@gmail.com ', N'912887325', N'Hòa Bình',N''); 
+insert into tbl_sinhvien values(1221000174, N'Tr?n Hoài Nam ', N'1988-10-09', N'0', N'51', N'6', N'hoainam@yahoo.com ', N'1268761238', N'Hà N?i',N''); 
+insert into tbl_sinhvien values(1221000183, N'Cao Ðình Khôi ', N'1985-08-12', N'0', N'48', N'5', N'Dinhkhoi85@gmail.com ', N'912987345', N'H?i Phòng',N''); 
+insert into tbl_sinhvien values(1221000158, N'Ð? Xuân Hu?n ', N'1987-10-17', N'0', N'49', N'3', N'Xuanhuan87@yahoo.com ', N'985876234', N'Thái Nguyên',N''); 
+insert into tbl_sinhvien values(1221000456, N'Ð? Xuân Tu?n ', N'1988-11-15', N'0', N'48', N'2', N'Xuantuan88@yahoo.com ', N'985876234', N'Hà N?i',N''); 
+
+
+/* Thêm d? li?u vào B?ng tbl_giangvien */
+insert into tbl_giangvien values(80501, N'Ð?ng Qu?c Trung ', N'1980-07-16', N'0', N'Th?c si ', N'dangquoctrung@humg.edu.vn ', N'982836521', N'B? môn Tin h?c Co b?n'); 
+insert into tbl_giangvien values(80502, N'Tr?n Trung Chuyên ', N'1975-10-07', N'0', N'K? su ', N'trantrungchuyen@humg.edu.vn ', N'1667651298', N'B? môn Tin h?c Tr?c d?a'); 
+insert into tbl_giangvien values(80503, N'Nguy?n Tu?n Anh ', N'1972-12-26', N'0', N'Th?c si ', N'nguyentuananh@humg.edu.vn ', N'987112887', N'B? môn Tin h?c Tr?c d?a'); 
+insert into tbl_giangvien values(80504, N'Ð?ng Van Nam ', N'1985-07-12', N'0', N'Th?c si ', N'dangvannam@humg.edu.vn ', N'986554231', N'B? môn Tin h?c M?'); 
+insert into tbl_giangvien values(80505, N'Nguy?n Phuong B?c ', N'1980-09-17', N'1', N'Th?c si ', N'nguyenphuongbac@humg.edu.vn ', N'1222345678', N'B? môn Tin h?c M?'); 
+insert into tbl_giangvien values(80506, N'Nguy?n Thùy Duong ', N'1977-08-19', N'1', N'Th?c si ', N'nguyenthuyduong@humg.edu.vn ', N'1258879876', N'B? môn Tin h?c M?'); 
+insert into tbl_giangvien values(80507, N'Nguy?n H?u Phuong ', N'1985-08-12', N'1', N'Th?c si ', N'nguyenhuuphuong@humg.edu.vn ', N'976897234', N'B? môn Công ngh? ph?n
+m?m'); 
+insert into tbl_giangvien values(80508, N'Nông Th? Oanh ', N'1974-08-10', N'1', N'Th?c si ', N'nongthioanh@humg.edu.vn ', N'985234116', N'B? môn Tin h?c M?'); 
+insert into tbl_giangvien values(80509, N'Lê Th? Nguy?t ', N'1978-09-15', N'1', N'Th?c si ', N'lethinguyet@humg.edu.vn ', N'988127776', N'B? môn Tin h?c Kinh t?'); 
+insert into tbl_giangvien values(80510, N'Ph?m Van Ð?ng ', N'1980-01-20', N'0', N'Th?c si ', N'phamvandong@humg.edu.vn ', N'1258791241', N'B? môn Công ngh? ph?n
+m?m'); 
+
+
+/* Thêm d? li?u vào B?ng tbl_linhvuc */
+insert into tbl_linhvuc values(1, N'Ph?n m?m ?ng d?ng trên Desktop', N''); 
+insert into tbl_linhvuc values(2, N'Ph?n m?m ?ng d?ng trên Di d?ng', N''); 
+insert into tbl_linhvuc values(3, N'Ph?n m?m ?ng d?ng trên n?n Web', N''); 
+insert into tbl_linhvuc values(4, N'An toàn – B?o m?t thông tin', N''); 
+insert into tbl_linhvuc values(5, N'M?ng máy tính', N''); 
+insert into tbl_linhvuc values(6, N'Khai thác ph?n m?m ?ng d?ng', N''); 
+insert into tbl_linhvuc values(7, N'Mã ngu?n m?', N''); 
+insert into tbl_linhvuc values(8, N'Map-GIS', N''); 
+insert into tbl_linhvuc values(9, N'T? d?ng hóa', N''); 
+
+
+/* Thêm d? li?u vào B?ng tbl_doan */
+insert into tbl_doan values(1221000100, N'Nghiên c?u ?ng d?ng ph?n m?m Topo và NovaTDN trong thi?t k? m? v?a m? dá tr?ng Mông Son, Yên Bình, Yên Bái và xây d?ng module qu?n lý b?n v? cho các d? án thi?t k? m? b?ng VBA trong
+AutoCAD', N'80502', N'80501', N'6', N'9.2', N'2008');
+insert into tbl_doan values(1221000109, N'Nghiên c?u xây d?ng module qu?n lý lý l?ch khoa h?c cán b? Tru?ng
+Ð?i h?c M?-Ð?a ch?t trên n?n mã ngu?n m? Joomla', N'80501', N'80510', N'7', N'8.8', N'2010');
+insert into tbl_doan values(1221000110, N'Nghiên c?u xây d?ng chuong trình qu?n lý các d? án khai thác m? ', N'80502', N'80508', N'1', N'7.9', N'2007'); 
+insert into tbl_doan values(1221000122, N'Xây d?ng Module h? tr? tính toán, ki?m tra và thi?t k? m?i h? th?ng
+cung c?p di?n 6 kV trong công tác khai thác m? l? thiên', N'80507', N'80505', N'1', N'9.4', N'2011');
+insert into tbl_doan values(1221000107, N'Xây d?ng chuong trình qu?n lý thi?t b? co di?n Công ty than C?c Sáu ', N'80506', N'80501', N'1', N'9.2', N'2010'); 
+insert into tbl_doan values(1221000420, N'?ng d?ng ph?n m?m Ventsim tính toán thi?t k? m?ng thông gió m?
+khu L? Trí c?a Công ty than Th?ng Nh?t – TKV', N'80510', N'80502', N'6', N'8.7', N'2009');
+insert into tbl_doan values(1221000311, N'Xây d?ng h? th?ng qu?n lý v?t tu cho Công ty than Th?ng Nh?t –
+TKV', N'80503', N'80504', N'1', N'7.5', N'2007');
+insert into tbl_doan values(1221000227, N'Xây d?ng chuong trình qu?n lý hi?n tr?ng khai thác các m? than bùn
+c?a t?nh Hà Tây theo công ngh? GIS', N'80504', N'80508', N'8', N'8.5', N'2008');
+insert into tbl_doan values(1221000111, N'Xây d?ng chuong trình l?p h? chi?u khoan n? mìn cho khu v?c Ðông
+Cao Son thu?c Công ty c? ph?n than Cao Son', N'80502', N'80509', N'1', N'9.4', N'2011');
+insert into tbl_doan values(1221000113, N'Xây d?ng mô hình 3D h? th?ng du?ng ?ng công ngh? c?a nhà máy
+x? lý nu?c th?i và ch?t th?i r?n Vinh Ni?m, Thành ph? H?i Phòng', N'80501', N'80507', N'1', N'7.9', N'2007');
+insert into tbl_doan values(1221000410, N'Xây d?ng chuong trình qu?n lý thi?t b? máy m? Công ty C? ph?n
+than Vàng Danh – TKV -', N'80510', N'80506', N'1', N'6.3', N'2010');
+insert into tbl_doan values(1221000166, N'Xây d?ng chuong trình qu?n lý v?t tu cho Công ty than Vàng Danh ', N'80507', N'80503', N'1', N'6', N'2010'); 
+insert into tbl_doan values(1221000168, N'Xây d?ng chuong trình qu?n lý kinh doanh nu?c s?ch ?ng d?ng cho
+huy?n Ðông Tri?u - Qu?ng Ninh', N'80502', N'80508', N'1', N'8.2', N'2011');
+insert into tbl_doan values(1221000157, N'Nghiên c?u xây d?ng Website thuong m?i di?n t? Công ty C?ng và
+Kinh doanh than', N'80504', N'80505', N'3', N'9', N'2007');
+insert into tbl_doan values(1221000143, N'Nghiên c?u xây d?ng h? th?ng giám sát m?t s? thông s? c?a h? th?ng
+công ngh? t? máy tính', N'80503', N'80507', N'9', N'7', N'2008');
+insert into tbl_doan values(1221000185, N'Nghiên c?u xây d?ng module qu?n lý thu vi?n Tru?ng Ð?i h?c M? -
+Ð?a Ch?t trên n?n mã ngu?n m? Joomla', N'80501', N'80504', N'7', N'7.8', N'2012');
+insert into tbl_doan values(1221000119, N'Xây d?ng CSDL ph?c v? công tác qu?n lý hi?n tr?ng s? d?ng d?t xã
+Gia Th?nh, huy?n Gia Vi?n, t?nh Ninh Bình trong môi tru?ng
+MapInfo.', N'80508', N'80502', N'8', N'8.5', N'2013');
+insert into tbl_doan values(1221000532, N'Xây d?ng website bán hàng tr?c tuy?n cho Công ty c? ph?n Xây
+d?ng, Thuong m?i và K? thu?t H?p Nh?t FUSICO', N'80504', N'80510', N'3', N'8.9', N'2011');
+insert into tbl_doan values(1221000169, N'Nghiên c?u ph?n m?m Topo-HSMo thành l?p b?n d? hi?n tr?ng, tính
+toán kh?i lu?ng d? th?i và quy ho?ch, xây d?ng m? r?ng bãi th?i
+Ðông Cao Son - Công ty than Cao Son.', N'80502', N'80507', N'6', N'9', N'2008');
+insert into tbl_doan values(1221000125, N'?ng d?ng ph?n m?m Gemcom Surpac xây d?ng mô hình vi kh?i và
+tính toán tr? lu?ng thân qu?ng m? Bauxit Nhân co.', N'80506', N'80502', N'6', N'8.3', N'2009');
+insert into tbl_doan values(1221000190, N'Xây d?ng website h? tr? dào t?o ti?ng anh tr?c tuy?n th? nghi?m cho
+h?c vi?n anh ng? EQUEST', N'80504', N'80507', N'3', N'8.4', N'2008');
+insert into tbl_doan values(1221000118, N'Xây d?ng ph?n m?m tra c?u thông tin khoáng v?t trên thi?t b? di d?ng ', N'80507', N'80508', N'2', N'7.9', N'2010'); 
+insert into tbl_doan values(1221000174, N'Tìm hi?u Joomla và Virtuemart d? xây d?ng Website bán hàng máy
+tính cho công ty HT-Tech', N'80504', N'80501', N'7', N'8.6', N'2011');
+insert into tbl_doan values(1221000183, N'Xây d?ng h? th?ng Mail Exchange 2010 cho công ty FPT Telecom ', N'80502', N'80507', N'5', N'9.1', N'2008'); 
+insert into tbl_doan values(1221000158, N'Xây d?ng website tuy?n d?ng cho trung tâm hu?ng nghi?p và tu v?n
+vi?c làm, Tru?ng ÐH M? - Ð?a ch?t', N'80504', N'80508', N'3', N'8.8', N'2009');
+
+
+/* Ph?n B: Vi?t các câu truy v?n */
+/* 
+Câu 1: Hi?n th? danh sách sinh viên, bao g?m các thông tin:
+Mã sinh viên| Tên sinh viên| ngày sinh| gi?i tính (Nam-N?) | khóa| Tên chuyên ngành| Email|Ði?n tho?i| Ð?a ch?
+S?p x?p k?t qu? theo th? t? tang d?n c?a mã sinh viên.
+*/
+select Masv, Tensv, Namsinh, Khoa, tbl_chuyennganh.Tencn,Email, Dienthoai, Diachi,CASE Gioitinh
+When 1 Then N'N?'
+When 0 Then N'Nam'
+end as Gioitinh
+from tbl_sinhvien inner join tbl_chuyennganh on tbl_chuyennganh.Macn = tbl_sinhvien.Chuyennganh
+order by Masv
+/*
+Câu 2: Hi?n th? t?t c? sinh viên theo chuyên ngành = 1, thông tin bao g?m:
+Mã sinh viên| Tên sinh viên| ngày sinh| gi?i tính (Nam-N?) | khóa| Tên chuyên ngành| Email| Ði?n tho?i| Ð?a ch?
+S?p x?p k?t qu? theo th? t? tang d?n c?a Khóa h?c.
+*/
+select Masv, Tensv, Namsinh, Khoa, tbl_chuyennganh.Tencn,Email, Dienthoai, Diachi,CASE Gioitinh
+When 1 Then N'N?'
+When 0 Then N'Nam'
+end as Gioitinh
+from tbl_sinhvien inner join tbl_chuyennganh on tbl_chuyennganh.Macn = tbl_sinhvien.Chuyennganh
+where Chuyennganh = 1
+order by Khoa
+
+/*
+Câu 3: Hi?n th? t?t c? sinh viên theo khóa h?c = 47, thông tin bao g?m:
+Mã sinh viên| Tên sinh viên| ngày sinh| gi?i tính (Nam-N?) | khóa| Tên chuyên ngành| Email| Ði?n tho?i| Ð?a ch?
+S?p x?p k?t qu? theo th? t? tang d?n c?a h? tên sinh viên.
+*/
+select Masv, Tensv, Namsinh, Khoa, tbl_chuyennganh.Tencn,Email, Dienthoai, Diachi,CASE Gioitinh
+When 1 Then N'N?'
+When 0 Then N'Nam'
+end as Gioitinh
+from tbl_sinhvien inner join tbl_chuyennganh on tbl_chuyennganh.Macn = tbl_sinhvien.Chuyennganh
+where Khoa = 47
+order by Tensv
+
+/*
+Câu 4: Li?t kê t?t c? các sinh viên trong tên sinh viên có t? ‘Nguy?n’, các thông tin bao g?m:
+Mã sinh viên| Tên sinh viên| ngày sinh| gi?i tính (Nam-N?) | khóa| Tên chuyên ngành| Email|Ði?n tho?i| Ð?a ch?
+S?p x?p k?t qu? theo th? t? tang d?n c?a mã sinh viên.
+*/
+select Masv, Tensv, Namsinh, Khoa, tbl_chuyennganh.Tencn,Email, Dienthoai, Diachi,CASE Gioitinh
+When 1 Then N'N?'
+When 0 Then N'Nam'
+end as Gioitinh
+from tbl_sinhvien inner join tbl_chuyennganh on tbl_chuyennganh.Macn = tbl_sinhvien.Chuyennganh
+where Tensv like N'%Nguy?n%'
+order by Masv
+
+/*
+Câu 5: Li?t kê t?t c? các sinh viên trong mã sinh viên có s? ‘111’ ho?c tên sinh viên có t? ‘Minh’, các thông tin bao g?m:
+Mã sinh viên| Tên sinh viên| ngày sinh| gi?i tính (Nam-N?) | khóa| Tên chuyên ngành| Email| Ði?n tho?i| Ð?a ch?
+S?p x?p k?t qu? theo th? t? tang d?n c?a mã sinh viên
+*/
+select Masv, Tensv, Namsinh, Khoa, tbl_chuyennganh.Tencn,Email, Dienthoai, Diachi,CASE Gioitinh
+When 1 Then N'N?'
+When 0 Then N'Nam'
+end as Gioitinh
+from tbl_sinhvien inner join tbl_chuyennganh on tbl_chuyennganh.Macn = tbl_sinhvien.Chuyennganh
+where Masv like '%111%' or Tensv like N'%Minh%'
+order by Masv
+
+/*
+Câu 6: Li?t kê danh sách: mã chuyên ngành | mã chuyên ngành - Tên chuyên ngành trong b?ng tbl_chuyennganh, các
+thông tin l?y ra s?p x?p theo th? t? tang d?n c?a mã chuyên ngành
+*/
+select Macn, Tencn
+from tbl_chuyennganh
+where Tencn like convert(Char(5),Macn) + \- + Tencn
+order by Macn
+/*
+Câu 7: Th?ng kê t?ng s? sinh viên trong b?ng tbl_sinhvien, t?ng s? gi?ng viên trong b?ng tbl_giangvien, t?ng s? d? án trong b?ng tbl_doan.
+*/
+select count(masv) as Tong_so_sinhvien
+from tbl_sinhvien
+select count(Magv) as Tong_so_giangvien
+from tbl_giangvien
+select count(Masv) as Tong_so_doan
+from tbl_doan
+
+/*
+Câu 8: Th?ng kê s? lu?ng sinh viên trong b?ng tbl_sinhvien theo t?ng chuyên ngành
+*/
+	select Tencn as N'Chuyên ngành', COUNT(masv) as N'S? lu?ng sinh viên'
+	from tbl_sinhvien inner join tbl_chuyennganh on tbl_chuyennganh.Macn = tbl_sinhvien.Chuyennganh
+	group by Tencn
+			
+/*
+Câu 9: Th?ng kê s? lu?ng sinh viên trong b?ng tbl_sinhvien theo t?ng khóa
+*/
+	select Khoa as 'Khóa h?c', COUNT(masv) as N'S? lu?ng sinh viên'
+	from tbl_sinhvien inner join tbl_khoahoc on tbl_khoahoc.Makh = tbl_sinhvien.Khoa
+	group by Khoa
+
+/*
+Câu 10: Th?ng kê s? lu?ng d? án theo t?ng linh v?c
+*/
+	select Tenlv as 'Linh v?c', COUNT(Masv) as N'S? lu?ng d? án'
+	from tbl_doan inner join tbl_linhvuc on tbl_doan.linhvuc = tbl_linhvuc.Malv
+	group by Tenlv
+
+/*
+Câu 11: Li?t kê danh sách thông tin d? án t?t nghi?p trong b?ng tbl_doan, bao g?m các thông tin sau:Mã sinh viên|Tên sinh viên|Tên d? án| Mã GVHD-Tên giáo viên hu?ng d?n|Mã GVPB-Tên giáo viên ph?n bi?n|Tên linh v?c|Ði?m|Nam t?t nghi?p
+S?p x?p k?t qu? theo th? t? tang d?n c?a mã sinh viên
+*/
+	select tbl_sinhvien.Masv as N'Mã sinh viên', Tensv as N'Tên sinh viên', TenDA as N'Tên d? án', GVHD, GVPB, Tenlv as N'Tên linh v?c', Diem as 'Ði?m', Namtn as N'Nam t?t nghi?p'
+	from tbl_sinhvien inner join tbl_doan on tbl_sinhvien.Masv = tbl_doan.Masv inner join tbl_linhvuc on tbl_doan.linhvuc = tbl_linhvuc.Malv
+	order by tbl_sinhvien.Masv
+
+/*
+Câu 12: Li?t kê danh sách Mã sinh viên | Mã sinh viên – Tên sinh viên c?a t?t c? các sinh viên có mã sinh viên n?m trong b?ng tbl_sinhvien mà không n?m trong b?ng tbl_doan nhu du?i dây:
+*/
+select tbl_doan.Masv as N'Mã sinh viên', Tensv as N'Tên sinh viên'
+from tbl_sinhvien inner join tbl_doan on tbl_sinhvien.Masv = tbl_doan.Masv
+where TenDA is NULL
+
+/*
+Câu 13: Hi?n th? danh sách t?t c? các d? án t?t nghi?p do gi?ng viên mã 080502 hu?ng d?n, s?p x?p k?t qu? theo th? t? gi?m d?n c?a di?m d? án
+*/
+select tbl_doan.Masv as N'Mã sinh viên', Tensv as N'Tên sinh viên',TenDA as N'Tên d? án', GVHD,GVPB,linhvuc as N'Linh v?c', Diem as N'Ði?m', Namtn as N'Nam t?t nghi?p' 
+from tbl_doan inner join tbl_sinhvien on tbl_doan.Masv = tbl_sinhvien.Masv
+where GVHD = 080502
+order by Diem DESC
+
+/*
+Câu 14:  Hi?n th? danh sách t?t c? các d? án th?a mãn di?u ki?n tên sinh viên th?c hi?n có t? “Huy?n” và di?m d? án >8.5
+*/
+select tbl_doan.Masv as N'Mã sinh viên', Tensv as N'Tên sinh viên',TenDA as N'Tên d? án', GVHD,GVPB,linhvuc as N'Linh v?c', Diem as N'Ði?m', Namtn as N'Nam t?t nghi?p' 
+from tbl_doan inner join tbl_sinhvien on tbl_doan.Masv = tbl_sinhvien.Masv
+where Tensv like N'%Huy?n%' and Diem >8.5 
+
+/*
+Câu 15:  Hi?n th? danh sách t?t c? các d? án làm v? linh v?c có mã = 6 và di?m trong kho?ng t? [8.5,9], k?t qu? trình bày nhu sau:
+*/
+select tbl_doan.Masv as N'Mã sinh viên', Tensv as N'Tên sinh viên',TenDA as N'Tên d? án', GVHD,GVPB,linhvuc as N'Linh v?c', Diem as N'Ði?m', Namtn as N'Nam t?t nghi?p' 
+from tbl_doan inner join tbl_sinhvien on tbl_doan.Masv = tbl_sinhvien.Masv inner join tbl_linhvuc on tbl_linhvuc.Malv = tbl_doan.linhvuc
+where Malv = 6 and Diem Between 8.5 and 9 
+order by Diem ASC
+
+/*
+Câu 16:  Hi?n th? danh sách các d? án có di?m cao nh?t, s?p x?p k?t qu? theo chi?u tang d?n c?a Mã sinh viên
+*/
+select tbl_doan.Masv as N'Mã sinh viên', Tensv as N'Tên sinh viên',TenDA as N'Tên d? án', GVHD,GVPB,linhvuc as N'Linh v?c', Diem as N'Ði?m', Namtn as N'Nam t?t nghi?p' 
+from tbl_doan inner join tbl_sinhvien on tbl_doan.Masv = tbl_sinhvien.Masv
+where Diem = (select max(Diem) from tbl_doan)
+order by tbl_doan.Masv
+
+/*
+Câu 17:  Hi?n th? danh sách các d? án mà trong tên d? án có t? “Joomla”
+*/
+select tbl_doan.Masv as N'Mã sinh viên', Tensv as N'Tên sinh viên',TenDA as N'Tên d? án', GVHD,GVPB,linhvuc as N'Linh v?c', Diem as N'Ði?m', Namtn as N'Nam t?t nghi?p' 
+from tbl_doan inner join tbl_sinhvien on tbl_doan.Masv = tbl_sinhvien.Masv
+where TenDA like N'%Joomla%'
+order by tbl_doan.Masv
+
+/*
+Câu 18: A) C?p nh?t l?i s? di?n tho?i c?a sinh viên có mã “1221000122” thành “0986226651”
+		B) C?p nh?t l?i di?m c?a sinh viên có mã “1221000190” thành 9.5 di?m.
+*/
+UPDATE tbl_sinhvien
+SET Dienthoai = 0986226651
+WHERE Masv = 1221000122
+--------------------------
+UPDATE tbl_doan
+SET Diem = 9.5
+FROM tbl_doan
+INNER JOIN tbl_sinhvien
+ON (tbl_doan.Masv = tbl_sinhvien.Masv)
+WHERE tbl_sinhvien.Masv = 1221000190
+/*
+Câu 19: A) Thêm m?t b?n ghi sau vào b?ng tbl_sinhvien
+			1121050069 | Nguy?n Th? Nguy?t | 10-09-1993 | 1 | 56 | 1 | nguyetit.humg@gmail.com | 0987666564 | Lai Châu
+		B) Thêm m?t b?n ghi sau vào b?ng tbl_giangvien
+			080511 | Truong Xuân Bình | 13-05-1984 | 0 | Th?c si | truongxuanbinh@humg.edu.vn | 0981234567 | B? môn Tin h?c Ð?a ch?t
+		C) Vi?t truy v?n thêm m?t b?n ghi có thông tin nhu sau vào b?ng tbl_doan:
+			1121050069 | ?ng d?ng ph?n m?m Ventsim tính toán thi?t k? m?ng thông gió m? Bình Minh – Thành Công | 080506 | 080506 |1|8.1|2016
+*/
+insert into tbl_sinhvien values(1121050069, N'Nguy?n Th? Nguy?t ', N'10-09-1993', N'1', N'56', N'1', N'nguyetit.humg@gmail.com ', N'0987666564', N'Lai Châu',N'');
+---------------------------------------------------
+insert into tbl_giangvien values(080511, N'Truong Xuân Bình ', N'1984-05-13', N'0', N'Th?c si ', N'truongxuanbinh@humg.edu.vn ', N'0981234567', N'B? môn Tin h?c Ð?a ch?t'); 
+---------------------------------------------------
+insert into tbl_doan values(1121050069, N'?ng d?ng ph?n m?m Ventsim tính toán thi?t k? m?ng thông gió m? Bình Minh – Thành Công ', N'80503', N'80502', N'1', N'8.1', N'2016');
+/*
+Câu 20:  Xóa b?n ghi có mã 1221000125 trong b?ng tbl_tblsinhvien
+*/
+Delete from tbl_sinhvien
+where Masv = 1221000125
